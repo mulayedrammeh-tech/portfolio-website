@@ -24,6 +24,27 @@
   <h2>What I do</h2>
   <p>EC2 • S3 • Linux • Cloud Deployment</p>
 </div>
+<div class="card">
+  <h2>Contact Me</h2>
 
+  <input id="msg" placeholder="Enter message">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+async function sendMessage() {
+  const message = document.getElementById("msg").value;
+
+  await fetch("http://51.21.3.88:3000/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message })
+  });
+
+  alert("Message sent to backend 🚀");
+}
+</script>
 </body>
 </html>
