@@ -1,6 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My AWS Portfolio</title>
+</head>
+
+<body>
+
+<h1>🏠 My Portfolio Website</h1>
+
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="about.html">About</a> |
+  <a href="projects.html">Projects</a>
+</nav>
+
+<hr>
+
+<h2>📩 Contact Me</h2>
+
+<input id="msg" placeholder="Enter your message" style="padding:10px; width:300px;">
+<br><br>
+
+<button onclick="sendMessage()">Send Message</button>
+
+<p id="status"></p>
+
 <script>
 async function sendMessage() {
   const message = document.getElementById("msg").value;
+  const status = document.getElementById("status");
 
   try {
     const res = await fetch("http://51.21.3.88:3000/contact", {
@@ -13,15 +41,14 @@ async function sendMessage() {
 
     const data = await res.json();
 
-    console.log("SUCCESS:", data);
-
-    document.getElementById("status").innerText =
-      "✔ Sent: " + data.received;
+    status.innerText = "✔ Sent: " + data.received;
 
   } catch (err) {
-    console.log("ERROR:", err);
-    document.getElementById("status").innerText =
-      "❌ Backend request failed (check console)";
+    console.log(err);
+    status.innerText = "❌ Error connecting to backend";
   }
 }
 </script>
+
+</body>
+</html>
