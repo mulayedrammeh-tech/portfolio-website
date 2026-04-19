@@ -32,7 +32,7 @@ async function sendMessage() {
 
   try {
     // IMPORTANT: use nginx endpoint (NOT :3000)
-    const res = await fetch("http://51.21.3.88/contact", {
+    const res = await fetch("https://boss-nano-intro-intake.trycloudflare.com/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
