@@ -27,12 +27,25 @@
 
 <script>
 async function sendMessage() {
+  const message = document.getElementById("msg").value;
+  const status = document.getElementById("status");
+
   try {
-    const res = await fetch("http://51.21.3.88:3000/");
-    const text = await res.text();
-    alert(text);
+    const res = await fetch("https://boss-nano-intro-intake.trycloudflare.com/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+
+    status.innerText = "✔ Sent: " + data.received;
+
   } catch (err) {
-    alert("FAILED: " + err);
+    console.log(err);
+    status.innerText = "❌ Error connecting to backend";
   }
 }
 </script>
